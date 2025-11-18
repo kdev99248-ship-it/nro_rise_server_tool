@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="494.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Location" textAlignment="CENTER" wrappingWidth="473.85298919677734">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Position : Doi Hoa Cuc " wrappingWidth="475.13000106811523">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Zone : Khu 6" wrappingWidth="475.13000106811523">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Location  - x: 560 - y : 120" wrappingWidth="475.13000106811523">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Map To " wrappingWidth="473.85298919677734">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <ComboBox prefHeight="26.0" prefWidth="498.0" />
+      <FlowPane hgap="10.0" prefHeight="89.0" prefWidth="474.0" vgap="10.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Reset Location" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Move To" />
+            <Button layoutX="135.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="162.0" text="Bring Player To Me" />
+            <Button layoutX="260.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="162.0" text="Go To Player" />
+            <Button layoutX="10.0" layoutY="53.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="162.0" text="Frezeee Player" />
+         </children>
+      </FlowPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

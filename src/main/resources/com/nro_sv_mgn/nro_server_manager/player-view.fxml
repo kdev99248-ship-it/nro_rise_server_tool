@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nro_sv_mgn.nro_server_manager.PlayerController">
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="1000.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Management" textAlignment="CENTER"
+              wrappingWidth="1000.5589981079102">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Text>
+    </HBox>
+    <HBox prefHeight="34.0" prefWidth="1000.0" spacing="10.0">
+        <TextField fx:id="txt_search" prefHeight="35.0" prefWidth="878.0" promptText="Nhap ten player"/>
+        <Button fx:id="btn_search" mnemonicParsing="false" onMouseClicked="#onSearchPlayer" prefHeight="37.0"
+                prefWidth="123.0" text="Tim Kiem Pl"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="1001.0">
+        <VBox.margin>
+            <Insets top="10.0"/>
+        </VBox.margin>
+        <padding>
+            <Insets left="10.0" right="10.0"/>
+        </padding>
+        <Text fx:id="txt_online" strokeType="OUTSIDE" strokeWidth="0.0" text="Online"
+              wrappingWidth="123.26100158691406">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+        </Text>
+        <Text fx:id="txt_ban" strokeType="OUTSIDE" strokeWidth="0.0" text="Ban" wrappingWidth="123.26100158691406">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Text>
+        <Text fx:id="txt_offline" strokeType="OUTSIDE" strokeWidth="0.0" text="Offline"
+              wrappingWidth="123.26100158691406">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Text>
+        <Button fx:id="btn_refresh_list" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                onMouseClicked="#onLoadListPlayer" prefHeight="26.0" prefWidth="129.0" text="Doi moi"
+                textAlignment="RIGHT"/>
+    </HBox>
+    <HBox prefHeight="304.0" prefWidth="1001.0" spacing="2.0">
+        <VBox.margin>
+            <Insets top="20.0"/>
+        </VBox.margin>
+        <TableView fx:id="tbt_list_player" prefHeight="304.0" prefWidth="864.0">
+            <columns>
+                <TableColumn fx:id="id" text="ID"/>
+                <TableColumn fx:id="name" text="Tên Game"/>
+                <TableColumn fx:id="dlLv" text="Đạo lộ"/>
+                <TableColumn fx:id="gold" text="Vàng"/>
+                <TableColumn fx:id="ruby" text="Hồng Ngọc"/>
+                <TableColumn fx:id="dn" text="Điểm nạp"/>
+                <TableColumn fx:id="cd" text="Công đức"/>
+            </columns>
+        </TableView>
+        <VBox prefHeight="304.0" prefWidth="267.0" spacing="20.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Button fx:id="btnBan" mnemonicParsing="false" onMouseClicked="#onBanPlayer" prefHeight="33.0"
+                    prefWidth="182.0" text="Ban Player"/>
+            <Button fx:id="btnDelete" layoutX="20.0" layoutY="20.0" mnemonicParsing="false"
+                    onMouseClicked="#onDeletePlayer" prefHeight="33.0" prefWidth="182.0" text="Xoa Player"/>
+            <Button fx:id="btnKick" layoutX="20.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#onKickPlayer"
+                    prefHeight="33.0" prefWidth="182.0" text="Kick Player"/>
+            <Button fx:id="btnThoatKet" layoutX="20.0" layoutY="86.0" mnemonicParsing="false"
+                    onMouseClicked="#onThoatKet" prefHeight="33.0" prefWidth="182.0" text="Xoa Ket"/>
+            <Button fx:id="btnDeleteAccount" layoutX="20.0" layoutY="53.0" mnemonicParsing="false"
+                    onMouseClicked="#onDeleteAccount" prefHeight="33.0" prefWidth="182.0" text="Xoa Tai Khoan"/>
+            <Button fx:id="btnShowInfo" layoutX="20.0" layoutY="152.0" mnemonicParsing="false"
+                    onMouseClicked="#onShowInfo" prefHeight="33.0" prefWidth="182.0" text="Hien TT Chi Tiet"/>
+        </VBox>
+    </HBox>
+    <HBox prefHeight="284.0" prefWidth="1001.0">
+        <TableView fx:id="tbt_inventory" prefHeight="284.0" prefWidth="798.0">
+            <columns>
+                <TableColumn fx:id="txtItemId" prefWidth="113.0" text="ID vật phẩm"/>
+                <TableColumn fx:id="txtItemName" prefWidth="155.0" text="Tên vật phẩm"/>
+                <TableColumn fx:id="txtQuantity" prefWidth="114.0" text="Số lượng"/>
+                <TableColumn fx:id="txtDesc" prefWidth="207.0" text="Mô tả vật phẩm"/>
+                <TableColumn fx:id="imvIcon" prefWidth="209.0" text="Icon Vật Phẩm"/>
+            </columns>
+        </TableView>
+        <VBox prefHeight="284.0" prefWidth="206.0" spacing="20.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Button fx:id="btnAddItem" onMouseClicked="#onAddItem" mnemonicParsing="false" prefHeight="29.0"
+                    prefWidth="185.0" text="Buff Item"/>
+            <Button fx:id="btnDeleteItem" layoutX="20.0" onMouseClicked="#onDeleteItem" layoutY="20.0" mnemonicParsing="false"
+                    prefHeight="29.0" prefWidth="185.0" text="Xoa Item"/>
+            <Button fx:id="btnDeleteAllItem" layoutX="20.0" layoutY="49.0" onMouseClicked="#onDeleteAllItem" mnemonicParsing="false"
+                    prefHeight="29.0" prefWidth="185.0" text="Xoa Tat Ca Item"/>
+            <TextField fx:id="txtSearchItem" text="Nhap id item"/>
+            <Button fx:id="btnSearchItem" onMouseClicked="#onSearchItem" layoutX="20.0" layoutY="20.0" mnemonicParsing="false"
+                    prefHeight="29.0" prefWidth="185.0" text="Tim kiem item"/>
+        </VBox>
+        <VBox.margin>
+            <Insets top="20.0"/>
+        </VBox.margin>
+    </HBox>
+</VBox>
