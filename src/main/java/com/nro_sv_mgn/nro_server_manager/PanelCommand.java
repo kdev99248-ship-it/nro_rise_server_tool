@@ -24,4 +24,22 @@ public class PanelCommand {
     public static final String CMD_DELETE_ALL_ITEM_BAG = "CMD_DELETE_ALL_ITEM_BAG";
 
     public static final String CMD_GET_INFO_SERVER = "GET_INFO_SERVER";
+
+
+    public static final String CMD_GET_DETAIL_PLAYER = "CMD_GET_DETAIL_PLAYER";
+    public static final String CMD_UPDATE_CS_PLAYER = "CMD_UPDATE_CS_PLAYER";
+    public static final String CMD_GET_TU_TIEN_PLAYER = "CMD_GET_TU_TIEN_PLAYER";
+    public static final String CMD_GET_TU_MA_PLAYER = "GET_TU_MA_PLAYER";
+    public static final String CMD_GET_LUYEN_THE_PLAYER = "GET_LUYEN_THE_PLAYER";
+    public static final String CMD_GET_LOCATION_PLAYER = "GET_LOCATION_PLAYER";
+    public static final String CMD_GET_ITEM_TIME_PLAYER = "GET_ITEM_TIME_PLAYER";
+
+    public static final String CMD_UPDATE_TU_TIEN_PLAYER = "UPDATE_TU_TIEN_PLAYER";
+    public static final String CMD_UPDATE_TU_MA_PLAYER = "UPDATE_TU_MA_PLAYER";
+    public static final String GET_PLAYER_BODY = "CMD_GET_DATA_BODY";
+    public static final String GET_PLAYER_BOX = "CMD_GET_PLAYER_BOX";
+    public static String CMD_UPDATE_LUYEN_THE_PLAYER = "UPDATE_LUYEN_THE_PLAYER";
+    public static String CMD_UPDATE_ITEM_TIME_PLAYER = "UPDATE_ITEM_TIME_PLAYER";
+    public static final String CMD_UPDATE_ITEM_BODY_PLAYER = "UPDATE_ITEM_BODY_PLAYER";
+
 }

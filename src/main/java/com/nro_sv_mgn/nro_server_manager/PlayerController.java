@@ -17,10 +17,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PlayerController {
     private static PlayerController instance;
+
+    public static Map<Integer, PlayerDetailController> playerControllers = new HashMap<>();
 
     private int selectedPlayerId = -1;
 
@@ -142,7 +146,6 @@ public class PlayerController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 });
 
                 return row;
@@ -236,7 +239,39 @@ public class PlayerController {
 
     @FXML
     public void onShowInfo() {
+        try {
+            int playerId = getSelectedPlayerId();
+            if (playerId != -1) {
+                for (int id : playerControllers.keySet()) {
+                    if (id == playerId) {
+                        Helper.showInfo("Đã có 1 tab player này đang chạy rồi");
+                        return;
+                    }
+                }
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("player-detail-view.fxml"));
+                Parent root = loader.load();
+                PlayerDetailController playerDetailController = loader.getController();
+                playerDetailController.setPlayerId(playerId);
+                playerDetailController.onLoad();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setOnCloseRequest(event -> {
+                    removePlayerController(playerId);
+                });
+                stage.show();
+                playerControllers.put(playerId, playerDetailController);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public PlayerDetailController getPlayerControllerById(int playerId) {
+        return playerControllers.get(playerId);
+    }
+
+    public void removePlayerController(int playerId) {
+        playerControllers.remove(playerId);
     }
 
     @FXML
@@ -361,20 +396,22 @@ public class PlayerController {
 
     @FXML
     public void onSearchItem() {
-        // get text in text field
-        if (txtSearchItem.getText() == null || txtSearchItem.getText().isEmpty()) {
+        String textSearch = txtSearchItem.getText();
+        if (textSearch == null || textSearch.isEmpty()) {
             itemData.clear();
             itemData.addAll(originList);
             return;
         }
-        String textSearch = txtSearchItem.getText();
+
         List<ListItemView> itemsFound = new ArrayList<>();
-        for (ListItemView itemDatum : itemData) {
-            if (itemDatum.getTxtItemName().contains(textSearch)) {
-                itemsFound.add(itemDatum);
+        for (ListItemView item : originList) { // <<--- search trên originList
+            if (item.getTxtItemName().toLowerCase().contains(textSearch.toLowerCase())) {
+                itemsFound.add(item);
             }
         }
+
         itemData.clear();
         itemData.addAll(itemsFound);
     }
+
 }

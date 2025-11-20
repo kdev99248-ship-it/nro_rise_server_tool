@@ -6,176 +6,303 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="1068.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nro_sv_mgn.nro_server_manager.PlayerDetailController">
-   <children>
-      <HBox prefHeight="260.0" prefWidth="1068.0">
-         <children>
-            <VBox prefHeight="232.0" prefWidth="312.0" spacing="10.0">
-               <children>
-                  <HBox prefHeight="62.0" prefWidth="407.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="160.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="235.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="407.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="160.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="235.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" text="DELETE ITEM" />
-                        <Button layoutX="151.0" layoutY="30.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" text="UPDATE ITEM" />
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox prefHeight="232.0" prefWidth="648.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="100.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hp " wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ki" wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="203.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SD" wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="52.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Suc Manh" wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiem Nang" wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="203.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chi Mang" wrappingWidth="91.13000106811523" />
-                              <TextField />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </HBox>
-                  <FlowPane hgap="10.0" prefHeight="69.0" prefWidth="633.0" vgap="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="UPDATE CS" />
-                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="RESET CS" />
-                        <Button layoutX="132.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="CS VI TRI" />
-                        <Button layoutX="236.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="CS TU TIEN" />
-                        <Button layoutX="350.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="CS TU MA" />
-                        <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" text="CS LUYEN THE">
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </Button>
-                        <Button layoutX="20.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="CS IT BUFF" />
-                        <Button layoutX="134.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="CS DE TU" />
-                        <Button layoutX="271.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="CS PHU" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                     </padding>
-                  </FlowPane>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <VBox prefHeight="236.0" prefWidth="1068.0" spacing="10.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Bag" wrappingWidth="137.13000106811523">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <TableView prefHeight="225.0" prefWidth="1048.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="10.0" layoutY="280.0" prefHeight="259.0" prefWidth="1068.0" spacing="10.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Box" wrappingWidth="137.13000106811523">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <TableView prefHeight="204.0" prefWidth="1048.0">
-               <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
-               </columns>
-            </TableView>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0"
+      prefWidth="1068.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nro_sv_mgn.nro_server_manager.PlayerDetailController">
+    <children>
+        <HBox prefHeight="260.0" prefWidth="1068.0">
+            <children>
+                <VBox prefHeight="232.0" prefWidth="312.0" spacing="10.0">
+                    <children>
+                        <HBox prefHeight="62.0" prefWidth="407.0" spacing="10.0">
+                            <children>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3" prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvAo" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvQuan" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvGang" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvGiay" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvRada" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="407.0" spacing="10.0">
+                            <children>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvCaiTrang" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvGlt" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvPet" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvChanMenh" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                                <BorderPane style="-fx-background-color: #d1d1d1;-fx-border-radius: 12;-fx-border-width: 3"  prefHeight="200.0" prefWidth="200.0">
+                                    <center>
+                                        <ImageView fx:id="imvFlagBag" onMouseClicked="#handleShowItem" fitHeight="40.0"
+                                                   fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
+                                                   BorderPane.alignment="CENTER"/>
+                                    </center>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </BorderPane>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" text="DELETE ITEM"/>
+                                <Button onMouseClicked="#refreshItemBody" layoutX="151.0" layoutY="30.0" lineSpacing="10.0" mnemonicParsing="false"
+                                        prefHeight="33.0" prefWidth="134.0" text="UPDATE ITEM"/>
+                                <Button layoutX="223.0" layoutY="43.0" lineSpacing="10.0" mnemonicParsing="false"
+                                        prefHeight="33.0" prefWidth="134.0" text="MOVE TO BAG"/>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </VBox>
+                <VBox prefHeight="232.0" prefWidth="648.0">
+                    <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <VBox prefHeight="100.0" prefWidth="183.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hp "
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField prefHeight="26.0" prefWidth="105.0"/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ki"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="203.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0"
+                                      spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SD"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="386.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0"
+                                      spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chi Mang"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <VBox prefHeight="52.0" prefWidth="183.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Suc Manh"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tiem Nang"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="203.0" layoutY="20.0" prefHeight="100.0" prefWidth="183.0"
+                                      spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Def"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <VBox layoutX="386.0" layoutY="10.0" prefHeight="100.0" prefWidth="183.0"
+                                      spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tl Ne Don"
+                                              wrappingWidth="91.13000106811523"/>
+                                        <TextField/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets left="10.0" right="10.0"/>
+                            </padding>
+                        </HBox>
+                        <FlowPane hgap="10.0" prefHeight="69.0" prefWidth="633.0" vgap="10.0">
+                            <children>
+                                <Button mnemonicParsing="false" text="UPDATE CS"/>
+                                <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="RESET CS"/>
+                                <Button layoutX="132.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="104.0" text="CS VI TRI"/>
+                                <Button layoutX="236.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="104.0" text="CS TU TIEN"/>
+                                <Button layoutX="350.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="104.0" text="CS TU MA"/>
+                                <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="147.0" text="CS LUYEN THE">
+                                    <padding>
+                                        <Insets left="10.0" right="10.0"/>
+                                    </padding>
+                                </Button>
+                                <Button layoutX="20.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="127.0" text="CS IT BUFF"/>
+                                <Button layoutX="134.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="127.0" text="CS DE TU"/>
+                                <Button layoutX="271.0" layoutY="56.0" mnemonicParsing="false" prefHeight="26.0"
+                                        prefWidth="127.0" text="CS PHU"/>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+                            </padding>
+                        </FlowPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <VBox layoutX="10.0" layoutY="280.0" prefHeight="259.0" prefWidth="1068.0" spacing="10.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Box" wrappingWidth="137.13000106811523">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Text>
+                <TableView prefHeight="204.0" prefWidth="856.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="C1"/>
+                        <TableColumn prefWidth="75.0" text="C2"/>
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" text="XOA ITEM"/>
+                        <Button layoutX="10.0" layoutY="17.0" mnemonicParsing="false" prefHeight="34.0"
+                                prefWidth="115.0" text="THEM ITEM"/>
+                        <Button layoutX="125.0" layoutY="17.0" mnemonicParsing="false" prefHeight="34.0"
+                                prefWidth="115.0" text="XOA ALL"/>
+                        <TextField prefHeight="31.0" prefWidth="177.0" promptText="Nhap Ten Item  Can Tim"/>
+                        <Button layoutX="264.0" layoutY="17.0" mnemonicParsing="false" prefHeight="34.0"
+                                prefWidth="115.0" text="TIM KIEM"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </VBox>
+    </children>
 </VBox>

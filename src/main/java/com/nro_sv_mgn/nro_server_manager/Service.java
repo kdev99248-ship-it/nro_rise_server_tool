@@ -99,4 +99,16 @@ public class Service {
         writer.newLine();
         writer.flush();
     }
+
+    public void getPlayerItemBody(BufferedWriter writer, int playerId) throws Exception {
+        writer.write(combineCommand(PanelCommand.GET_PLAYER_BODY, String.valueOf(playerId)));
+        writer.newLine();
+        writer.flush();
+    }
+
+    public void getPlayerItemBox(BufferedWriter writer, int playerId) throws Exception {
+        writer.write(combineCommand(PanelCommand.GET_PLAYER_BOX, String.valueOf(playerId)));
+        writer.newLine();
+        writer.flush();
+    }
 }

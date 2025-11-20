@@ -8,6 +8,7 @@ import java.util.Properties;
 
 public class Settings {
     public static final int RES_PORT = 1234;
+    //    public static String SERVER_IP = "160.250.246.84";
     public static String SERVER_IP = "127.0.0.1";
     public static int SERVER_PORT = 8888;
     public static final String RESOURCE_PATH =

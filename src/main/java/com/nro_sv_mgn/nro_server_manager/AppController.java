@@ -1,5 +1,7 @@
 package com.nro_sv_mgn.nro_server_manager;
 
+import com.nro_sv_mgn.nro_server_manager.dto.ItemBody;
+import com.nro_sv_mgn.nro_server_manager.dto.ItemOption;
 import com.nro_sv_mgn.nro_server_manager.dto.ListItemView;
 import com.nro_sv_mgn.nro_server_manager.dto.ListPlayerView;
 import javafx.animation.KeyFrame;
@@ -113,10 +115,61 @@ public class AppController implements Runnable {
                     Helper.showInfo("Buff item success");
                 });
                 break;
+            case PanelCommand.GET_PLAYER_BODY:
+                Platform.runLater(() -> {
+                    JSONArray jsonArray = (JSONArray) JSONValue.parse(val[1]);
+                    int playerId = Integer.parseInt(jsonArray.get(0).toString());
+                    PlayerDetailController playerDetailController = PlayerController.getInstance().getPlayerControllerById(playerId);
+                    if (playerDetailController != null) {
+                        JSONArray newArray = new JSONArray();
+                        newArray.addAll(jsonArray.subList(1, jsonArray.size()));
+                        List<ItemBody> itemBodies = parerItemBody(newArray);
+                        playerDetailController.itAo = itemBodies.get(0);
+                        playerDetailController.itQuan = itemBodies.get(1);
+                        playerDetailController.itGang = itemBodies.get(2);
+                        playerDetailController.itGiay = itemBodies.get(3);
+                        playerDetailController.itRada = itemBodies.get(4);
+                        playerDetailController.itCt = itemBodies.get(5);
+                        playerDetailController.itGlt = itemBodies.get(6);
+                        playerDetailController.itPet = itemBodies.get(7);
+                        playerDetailController.itChanMenh = itemBodies.get(8);
+                        playerDetailController.itCo = itemBodies.get(9);
+                        playerDetailController.loadImv();
+                    }
+                });
+                break;
             case PanelCommand.CMD_SUCCESS:
                 Platform.runLater(() -> Helper.showInfo(val[1]));
                 break;
         }
+    }
+
+    private List<ItemBody> parerItemBody(JSONArray data) {
+        List<ItemBody> list = new ArrayList<>();
+        for (Object o : data) {
+            JSONArray jsIt = (JSONArray) o;
+            if (jsIt != null && !jsIt.isEmpty()) {
+                ItemBody itemBody = new ItemBody();
+                itemBody.tempId = Integer.parseInt(jsIt.get(0).toString());
+                itemBody.name = jsIt.get(1).toString();
+                itemBody.iconID = Integer.parseInt(jsIt.get(2).toString());
+                itemBody.quantity = Integer.parseInt(jsIt.get(3).toString());
+                // load option
+                JSONArray opts = (JSONArray) jsIt.get(4);
+                for (Object opt : opts) {
+                    JSONArray jsopt = (JSONArray) opt;
+                    ItemOption itemOption = new ItemOption();
+                    itemOption.setId(Integer.parseInt(jsopt.get(0).toString()));
+                    itemOption.setName(jsopt.get(1).toString());
+                    itemOption.setParam(Integer.parseInt(jsopt.get(2).toString()));
+                    itemBody.itemOptions.add(itemOption);
+                }
+                list.add(itemBody);
+            } else {
+                list.add(null);
+            }
+        }
+        return list;
     }
 
     private String timeConvert(long millis) {
