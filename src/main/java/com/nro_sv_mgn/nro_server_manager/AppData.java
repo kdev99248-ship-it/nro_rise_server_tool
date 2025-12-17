@@ -1,5 +1,7 @@
 package com.nro_sv_mgn.nro_server_manager;
 
+import com.nro_sv_mgn.nro_server_manager.dto.ItemTemplate;
+import com.nro_sv_mgn.nro_server_manager.dto.MapTemplate;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
@@ -8,18 +10,36 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONValue;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Objects;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class AppData {
+    public static Map<Integer, MapTemplate> MAP_TEMPLATES = new HashMap<>();
+    public static Map<Integer, ItemTemplate> ITEM_TEMPLATES = new HashMap<>();
+
     static Socket resClient;
     static DataOutputStream resDos;
     static DataInputStream resIn;
     static File packDir = new File(Settings.PACKAGE_PATH);
+
+    public static boolean hasData() {
+        try {
+            return Files.exists(Paths.get(Settings.RESOURCE_PATH, "map.json"))
+                    && Files.exists(Paths.get(Settings.RESOURCE_PATH, "item.json"));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
 
     // Giải nén .rar
     public static void extractZip(File zipFile, String outputDir) throws IOException {
@@ -38,6 +58,57 @@ public class AppData {
             }
         }
         System.out.println("🧩 Giải nén xong: " + zipFile.getName());
+    }
+
+    public static void loadDataToSystem() {
+        try {
+            ITEM_TEMPLATES.clear();
+            MAP_TEMPLATES.clear();
+            if (hasData()) {
+                // load map first
+                FileReader fileReader = new FileReader(Settings.RESOURCE_PATH + "/map.json");
+                if (fileReader.ready()) {
+                    JSONArray jsonArray = (JSONArray) JSONValue.parse(fileReader);
+                    if (jsonArray != null && !jsonArray.isEmpty()) {
+                        for (Object o : jsonArray) {
+                            JSONArray mapArr = (JSONArray) o;
+                            MapTemplate map = new MapTemplate();
+                            map.setId(Integer.parseInt(mapArr.get(0).toString()));
+                            map.setName(mapArr.get(1).toString());
+                            map.setType(Byte.parseByte(mapArr.get(2).toString()));
+                            map.setPlanetId(Byte.parseByte(mapArr.get(3).toString()));
+                            map.setMaxPlayerPerZone(Byte.parseByte(mapArr.get(4).toString()));
+                            map.setZones(Byte.parseByte(mapArr.get(5).toString()));
+                            MAP_TEMPLATES.put(map.getId(), map);
+                        }
+                    }
+                }
+
+                FileReader itemReader = new FileReader(Settings.RESOURCE_PATH + "/item.json");
+                if (itemReader.ready()) {
+                    JSONArray jsonArray = (JSONArray) JSONValue.parse(itemReader);
+                    if (jsonArray != null && !jsonArray.isEmpty()) {
+                        for (Object o : jsonArray) {
+                            JSONArray itemArr = (JSONArray) o;
+                            ItemTemplate item = new ItemTemplate();
+                            item.setId(Integer.parseInt(itemArr.get(0).toString()));
+                            item.setName(itemArr.get(1).toString());
+                            item.setType(Byte.parseByte(itemArr.get(2).toString()));
+                            item.setGender(Byte.parseByte(itemArr.get(3).toString()));
+                            item.setDescription(itemArr.get(4).toString());
+                            item.setIconID(Short.parseShort(itemArr.get(5).toString()));
+                            item.setHead(Short.parseShort(itemArr.get(6).toString()));
+                            item.setBody(Short.parseShort(itemArr.get(7).toString()));
+                            item.setLeg(Short.parseShort(itemArr.get(8).toString()));
+                            item.setGold(Long.parseLong(itemArr.get(9).toString()));
+                            ITEM_TEMPLATES.put(item.getId(), item);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void downloadResourceWithProgress() throws IOException {
@@ -115,8 +186,12 @@ public class AppData {
 
         task.setOnSucceeded(e -> {
             progressStage.close();
-            Platform.runLater(() -> new Alert(Alert.AlertType.INFORMATION,
-                    "✅ Đã tải và giải nén hoàn tất!").showAndWait());
+            Platform.runLater(() -> {
+                        new Alert(Alert.AlertType.INFORMATION,
+                                "✅ Đã tải và giải nén hoàn tất! Khởi động lại app để đồng bộ dữ liệu").showAndWait();
+                        System.exit(0);
+                    }
+            );
         });
 
         task.setOnFailed(e -> {
@@ -179,13 +254,13 @@ public class AppData {
         thread.start();
     }
 
-    public static void sendRequestRes() {
+    public static void sendRequestRes(String command) {
         try {
             if (resDos == null || resClient == null || !resClient.isConnected()) {
                 Helper.showInfo("Không thể kết nối với Res server");
                 return;
             }
-            resDos.writeUTF(PanelCommand.CMD_SEND_RES);
+            resDos.writeUTF(command);
             resDos.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,10 +286,12 @@ public class AppData {
                 boolean confirmDownload = Helper.showConfirm("Cập nhật dữ liệu", "Hệ thống nhận ra thiếu file dữ liệu nên cần bạn phải tải dữ liệu");
                 if (confirmDownload) {
                     openConnect();
-                    sendRequestRes();
+                    sendRequestRes(PanelCommand.CMD_SEND_RES);
                     AppData.downloadResourceWithProgress();
                 }
             }
+            // load data here
+            loadDataToSystem();
         } catch (Exception e) {
             e.printStackTrace();
         }

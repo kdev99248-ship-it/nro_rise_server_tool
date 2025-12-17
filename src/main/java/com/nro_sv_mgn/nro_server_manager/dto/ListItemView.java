@@ -2,12 +2,17 @@ package com.nro_sv_mgn.nro_server_manager.dto;
 
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListItemView {
     private int txtItemId;
     private String txtItemName;
     private int txtQuantity;
     private String txtDesc;
     private ImageView imvIcon;
+    private int iconID;
+    private List<ItemOption> itemOptions = new ArrayList<>();
 
     public ListItemView() {
     }
@@ -18,6 +23,22 @@ public class ListItemView {
         this.txtQuantity = txtQuantity;
         this.txtDesc = txtDesc;
         this.imvIcon = imvIcon;
+    }
+
+    public List<ItemOption> getItemOptions() {
+        return itemOptions;
+    }
+
+    public void setItemOptions(List<ItemOption> itemOptions) {
+        this.itemOptions = itemOptions;
+    }
+
+    public int getIconID() {
+        return iconID;
+    }
+
+    public void setIconID(int iconID) {
+        this.iconID = iconID;
     }
 
     public int getTxtItemId() {

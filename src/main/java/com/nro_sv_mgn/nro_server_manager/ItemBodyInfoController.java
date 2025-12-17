@@ -2,6 +2,7 @@ package com.nro_sv_mgn.nro_server_manager;
 
 import com.nro_sv_mgn.nro_server_manager.dto.ItemBody;
 import com.nro_sv_mgn.nro_server_manager.dto.ItemOption;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.json.simple.JSONArray;
 
 public class ItemBodyInfoController {
 
@@ -38,13 +41,19 @@ public class ItemBodyInfoController {
 
     ObservableList<ItemOption> options = FXCollections.observableArrayList();
 
+    private int type;
+
     private ItemBody data;
 
-    public void blindData(int playerId, ItemBody data) {
+    public void blindData(int playerId, ItemBody data, int type) {
         this.playerId = playerId;
         this.data = data;
+        this.type = type;
         this.options.clear();
         this.options.addAll(this.data.itemOptions);
+        if (type == 1) {
+            btnMoveItemToBag.setDisable(true);
+        }
     }
 
     @FXML
@@ -75,6 +84,15 @@ public class ItemBodyInfoController {
         }
     }
 
+    public void onLoadData(ItemBody data) {
+        this.data = data;
+        this.options.clear();
+        this.options.addAll(data.itemOptions);
+    }
+
+    @FXML
+    Button btnMoveItemToBag;
+
     @FXML
     private void initialize() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -83,6 +101,7 @@ public class ItemBodyInfoController {
         tblOption.setItems(options);
         tblOption.setEditable(false);
         tblOption.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
     }
 
     public int getSelectedOptionId() {
@@ -95,25 +114,95 @@ public class ItemBodyInfoController {
 
     @FXML
     public void onAddOption() {
-
+        try {
+            String optionId = txtId.getText();
+            String params = txtParam.getText();
+            if (optionId == null || params == null || optionId.isEmpty() || params.isEmpty()) {
+                Helper.showInfo("Hãy nhập option id và param");
+                return;
+            }
+            if (Integer.parseInt(params) > 2_000_000_000) {
+                Helper.showInfo("Giá trị option quá lớn");
+                return;
+            }
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(playerId);
+            jsonArray.add(data.tempId);
+            jsonArray.add(type);
+            jsonArray.add(optionId);
+            jsonArray.add(params);
+            Service.gI().addOptionForItem(AppController.out, jsonArray.toJSONString());
+            txtId.clear();
+            txtParam.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void onRemoveOption() {
-
+        try {
+            ItemOption option = tblOption.getSelectionModel().getSelectedItem();
+            if (option != null) {
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.add(playerId);
+                jsonArray.add(data.tempId);
+                jsonArray.add(type);
+                jsonArray.add(option.getId());
+                Service.gI().deleteItemOption(AppController.out, jsonArray.toJSONString());
+            } else {
+                Helper.showInfo("Hãy chọn một option");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    public void onMoveItemToBag() {
+    Button btnClose;
 
+    @FXML
+    public void onMoveItemToBag() {
+        try {
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(playerId);
+            jsonArray.add(data.tempId);
+            jsonArray.add(type);
+            Service.gI().moveItemBodyToBag(AppController.out, jsonArray.toJSONString());
+            Stage stage = (Stage) btnClose.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void onDeleteAllOption() {
-
+        try {
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(playerId);
+            jsonArray.add(data.tempId);
+            jsonArray.add(type);
+            Service.gI().deleteAllItemOption(AppController.out, jsonArray.toJSONString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void onDeleteItem() {
+        try {
+            if (Helper.showConfirm("Cảnh báo", "Bạn thực sự muốn xóa item này?")) {
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.add(playerId);
+                jsonArray.add(data.tempId);
+                jsonArray.add(type);
+                Service.gI().deleteItem(AppController.out, jsonArray.toJSONString());
+                Stage stage = (Stage) btnClose.getScene().getWindow();
+                stage.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

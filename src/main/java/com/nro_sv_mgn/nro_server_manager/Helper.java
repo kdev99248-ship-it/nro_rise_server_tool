@@ -1,19 +1,12 @@
 package com.nro_sv_mgn.nro_server_manager;
 
-import com.github.junrar.Archive;
-import com.github.junrar.rarfile.FileHeader;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.Optional;
 
 import static com.nro_sv_mgn.nro_server_manager.Settings.RESOURCE_PATH;

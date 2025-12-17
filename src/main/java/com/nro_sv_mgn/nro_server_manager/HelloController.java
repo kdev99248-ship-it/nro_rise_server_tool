@@ -27,7 +27,7 @@ public class HelloController {
     @FXML
     protected void onUpdatePackButtonClick() throws IOException {
         AppData.openConnect();
-        AppData.sendRequestRes();
+        AppData.sendRequestRes(PanelCommand.CMD_SEND_RES);
         AppData.downloadResourceWithProgress();
     }
 

@@ -22,18 +22,28 @@ import java.util.zip.ZipInputStream;
 
 public class HelloApplication extends Application {
     private static HelloController controller;
+    Thread appControllerThread;
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 680, 500);
         controller = fxmlLoader.getController();
+        appControllerThread = new Thread(AppController.gI());
+
         stage.setTitle("NRO RISE");
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setOnCloseRequest(event -> {
+            if (appControllerThread != null) {
+                appControllerThread.interrupt();
+                appControllerThread = null;
+            }
+            System.exit(0);
+        });
         stage.show();
         AppData.handleCheckResouce();
-        new Thread(AppController.gI()).start();
+        appControllerThread.start();
     }
 
     // Getter để class khác có thể gọi setter của controller

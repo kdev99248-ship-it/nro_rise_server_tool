@@ -80,9 +80,11 @@
                         text="DELETE OPTION"/>
                 <Button onMouseClicked="#onDeleteAllOption" layoutX="90.0" layoutY="20.0" mnemonicParsing="false"
                         text="DELETE ALL OPTION "/>
-                <Button onMouseClicked="#onDeleteItem" layoutX="160.0" layoutY="20.0" mnemonicParsing="false"
+                <Button fx:id="btnClose" onMouseClicked="#onDeleteItem" layoutX="160.0" layoutY="20.0"
+                        mnemonicParsing="false"
                         text="DELETE ITEM"/>
-                <Button onMouseClicked="#onMoveItemToBag" layoutX="175.0" layoutY="56.0" mnemonicParsing="false"
+                <Button fx:id="btnMoveItemToBag" onMouseClicked="#onMoveItemToBag" layoutX="175.0" layoutY="56.0"
+                        mnemonicParsing="false"
                         text="MOVE TO BAG"/>
             </children>
             <padding>

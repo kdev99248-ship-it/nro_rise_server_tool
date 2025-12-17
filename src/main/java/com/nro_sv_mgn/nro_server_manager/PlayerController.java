@@ -1,5 +1,6 @@
 package com.nro_sv_mgn.nro_server_manager;
 
+import com.nro_sv_mgn.nro_server_manager.dto.ItemBody;
 import com.nro_sv_mgn.nro_server_manager.dto.ListItemView;
 import com.nro_sv_mgn.nro_server_manager.dto.ListPlayerView;
 import javafx.collections.FXCollections;
@@ -12,19 +13,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlayerController {
     private static PlayerController instance;
 
     public static Map<Integer, PlayerDetailController> playerControllers = new HashMap<>();
+
+    public static Map<String, ItemBodyInfoController> itemBodyInfoControllers = new HashMap<>();
 
     private int selectedPlayerId = -1;
 
@@ -37,6 +38,8 @@ public class PlayerController {
     }
 
     public static List<ListItemView> originList = new ArrayList<>();
+
+    public static List<ListPlayerView> originPlayerList = new ArrayList<>();
 
     @FXML
     private Button btn_refresh_list;
@@ -172,7 +175,6 @@ public class PlayerController {
         try {
             Service.gI().getListPlayer(AppController.out);
             Service.gI().getAccountStatus(AppController.out);
-            Helper.showInfo("Load list player success");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -322,12 +324,29 @@ public class PlayerController {
     public void onSearchPlayer() {
         // get value from input
         try {
+            List<ListPlayerView> foundList = new ArrayList<>();
             String val = txt_search.getText();
             if (val == null || val.isEmpty()) {
-                Helper.showInfo("Hãy nhập gì đó để tìm kiếm");
+                data.clear();
+                data.addAll(originPlayerList);
                 return;
             }
-            Service.gI().sendSearchPlayer(AppController.out, val);
+            for (ListPlayerView listPlayerView : originPlayerList) {
+                if (listPlayerView.getName().contains(val.toLowerCase())) {
+                    foundList.add(listPlayerView);
+                }
+            }
+            data.clear();
+            data.addAll(foundList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onRefreshItem() {
+        try {
+            Service.gI().getPlayerBag(AppController.out, getSelectedPlayerId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -336,8 +355,6 @@ public class PlayerController {
     @FXML
     public void onAddItem() {
         try {
-            // get player id first
-            // open mot cai form khac
             if (this.selectedPlayerId == -1) {
                 Helper.showInfo("Hãy chọn 1 player");
                 return;
@@ -346,6 +363,7 @@ public class PlayerController {
             Parent root = loader.load();
             AddItemController controller = loader.getController();
             controller.setPlayerId(this.selectedPlayerId);
+            controller.setTypeAdd(0);
             Stage playerStage = new Stage();
             playerStage.setTitle("Buff Item Player");
             playerStage.setScene(new Scene(root));
@@ -414,4 +432,35 @@ public class PlayerController {
         itemData.addAll(itemsFound);
     }
 
+    public ItemBodyInfoController getItemBodyInfoControllerById(String s) {
+        return itemBodyInfoControllers.get(s);
+    }
+
+    public void onShowItemInfo(MouseEvent mouseEvent) {
+        try {
+            if (getSelectedItem() == null) {
+                Helper.showInfo("Hãy chọn một item");
+                return;
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(Helper.class.getResource("item-body-info.fxml"));
+            Parent root = fxmlLoader.load();
+            ItemBodyInfoController controller = fxmlLoader.getController();
+            controller.blindData(getSelectedPlayerId(), ItemBody.fromItemView(getSelectedItem()), 1);
+            controller.onLoad();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            PlayerController.itemBodyInfoControllers.put(Util.combinePlayerAndItem(getSelectedItem().getTxtItemId(), getSelectedPlayerId(), getSelectItemIndex(), 1), controller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int getSelectItemIndex() {
+        return tbt_inventory.getSelectionModel().getSelectedIndex();
+    }
+
+    private ListItemView getSelectedItem() {
+        return tbt_inventory.getSelectionModel().getSelectedItem();
+    }
 }

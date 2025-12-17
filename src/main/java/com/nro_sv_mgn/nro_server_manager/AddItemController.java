@@ -9,9 +9,14 @@ import org.json.simple.JSONArray;
 
 public class AddItemController {
     private int playerId;
+    private int typeAdd;
 
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public void setTypeAdd(int typeAdd) {
+        this.typeAdd = typeAdd;
     }
 
     @FXML
@@ -41,6 +46,7 @@ public class AddItemController {
                 jsonArray.add(quantity);
                 jsonArray.add(options);
                 jsonArray.add(playerId);
+                jsonArray.add(typeAdd);
                 Service.gI().sendAddItemToPlayer(AppController.out, jsonArray.toJSONString());
                 // after add close this form
                 onCancelAdd();
@@ -60,6 +66,15 @@ public class AddItemController {
             String[] optionV = s.split("-");
             if (optionV.length != 2) {
                 Helper.showInfo("Định dạng option ko đúng");
+                return false;
+            }
+            try {
+                if (Integer.parseInt(optionV[1]) > 2_000_000_000) {
+                    Helper.showInfo("Giá trị option vượt quá 2 tỷ");
+                    return false;
+                }
+            } catch (Exception e) {
+                Helper.showInfo("Giá trị option không đúng");
                 return false;
             }
         }
